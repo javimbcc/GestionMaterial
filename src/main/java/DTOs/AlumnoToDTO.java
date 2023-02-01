@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import alumnos.material.dao.Alumnos;
 
+/*
+ * Clase que usaremos para recoger los datos de alumno y
+ * de la lista que contiene todos los alumnos con los datos que queremos
+ * @author Jmenabc
+ */
 public class AlumnoToDTO {
 
 	public static AlumnosDTO alumnoToDto(Alumnos al) {

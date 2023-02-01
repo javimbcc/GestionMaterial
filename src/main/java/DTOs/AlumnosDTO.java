@@ -5,7 +5,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import alumnos.material.dao.Ordenador;
-
+/*
+ * Clase de alumno que usamos para traernos la informacion que queremos
+ * @author Jmenabc
+ */
 public class AlumnosDTO {
 	// Atributos
 	private long numeroAlumno;

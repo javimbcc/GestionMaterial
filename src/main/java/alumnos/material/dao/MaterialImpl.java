@@ -61,32 +61,47 @@ public class MaterialImpl implements MaterialService {
 	// Buscar ordenador conociendo el id del alumno
 
 	public Ordenador buscaPcPorAlumno(long idAlumno) {
-		String jpql = "SELECT al FROM Alumnos al WHERE al.numeroAlumno = :idAl";
-		Query query = em.createQuery(jpql);
-		query.setParameter("idAl", idAlumno);
-		ArrayList<Alumnos> al = (ArrayList<Alumnos>) query.getResultList();
-		Ordenador ordenador = al.get(0).pc;
-		return ordenador;
+		try {
+			String jpql = "SELECT al FROM Alumnos al WHERE al.numeroAlumno = :idAl";
+			Query query = em.createQuery(jpql);
+			query.setParameter("idAl", idAlumno);
+			ArrayList<Alumnos> al = (ArrayList<Alumnos>) query.getResultList();
+			Ordenador ordenador = al.get(0).pc;
+			return ordenador;
+		} catch(Exception e) {
+			System.out.println("[MaterialImpl-buscaPcPorAlumno]: " + e);
+		}
+		return null;
 	}
 
 	// Buscar Alumno conociendo el identificador del pc
 
 	public Alumnos buscaAlumnoPorPc(long idPc) {
-		String jpql = "SELECT pc FROM Ordenador pc WHERE pc.identificador = :idPc";
-		Query query = em.createQuery(jpql);
-		query.setParameter("idPc", idPc);
-		ArrayList<Ordenador> ordenadores = (ArrayList<Ordenador>) query.getResultList();
-		Alumnos alum = ordenadores.get(0).al;
-		return alum;
+		try {
+			String jpql = "SELECT pc FROM Ordenador pc WHERE pc.identificador = :idPc";
+			Query query = em.createQuery(jpql);
+			query.setParameter("idPc", idPc);
+			ArrayList<Ordenador> ordenadores = (ArrayList<Ordenador>) query.getResultList();
+			Alumnos alum = ordenadores.get(0).al;
+			return alum;
+		} catch (Exception e) {
+			System.out.println("[MaterialImpl-buscaAlumnoPorPc]: " + e);
+		}
+		return null;
 	}
 
 	// Listar todos los alumnos
 
 	public ArrayList<Alumnos> alumnos() {
-		String jpql = "SELECT al FROM Alumnos al";
-		Query query = em.createQuery(jpql);
-		ArrayList<Alumnos> listaAlumnos = (ArrayList<Alumnos>) query.getResultList();
-		return listaAlumnos;
+		try {
+			String jpql = "SELECT al FROM Alumnos al";
+			Query query = em.createQuery(jpql);
+			ArrayList<Alumnos> listaAlumnos = (ArrayList<Alumnos>) query.getResultList();
+			return listaAlumnos;
+		} catch (Exception e) {
+			System.out.println("[MaterialImpl-alumnos]: " + e);
+		}
+		return null;
 	}
 
 }
