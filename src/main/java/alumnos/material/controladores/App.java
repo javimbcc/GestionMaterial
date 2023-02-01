@@ -19,7 +19,7 @@ import alumnos.material.impl.ConsultasPostgre;
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		// Cogemos el contexto de nuestro bean.xml
 		ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
 		// Creamos una instancia de ConsultasPostgre para poder ejecutar las consultas
@@ -27,10 +27,10 @@ public class App {
 		// Declaramos una instancia para hacer una prueba
 		Ordenador pcEjemplo = new Ordenador(2, "HP Pavilion", "b332321");
 		Alumnos al = new Alumnos(2, "Javier Mena-Bernal Carranza", "601496752", pcEjemplo);
-		// Ejecutamos la consulta
 		// Declaramos el escaner para leer valores por consola
 		Scanner escaner = new Scanner(System.in);
 		// Declaramos las variables que usaremos para dar valores en el menu
+		
 		
 		System.out.println("==========================");
 		System.out.println("Menu");
@@ -62,7 +62,7 @@ public class App {
 				break;
 			case 4:
 				System.out.println("Consultando el portatil con el id del alumno");
-				OrdenadorDTO pcDTO = OrdenadorToDTO.ordenadorToDto(pg.buscarPcPorIdDeAlumno(1));
+				OrdenadorDTO pcDTO = OrdenadorToDTO.ordenadorToDto(pg.buscarPcPorIdDeAlumno(3));
 				System.out.println(pcDTO.getIdentificador() + pcDTO.getMarca() + pcDTO.getModelo());
 				break;
 			case 5: 
@@ -73,7 +73,14 @@ public class App {
 				break;
 			case 6:
 				System.out.println("Consultando todos los alumnos con su identificador de portatil");
+				// Lista de alumnos
 				ArrayList<AlumnosDTO> alumnosLista = AlumnoToDTO.alumnoListToDTO(pg.listarTodosLosAlumnos());
+				for (AlumnosDTO alim :  alumnosLista) {
+					System.out.println(alim.getPc());
+				}
+				break;
+			case 7:
+				
 				
 				
 		}

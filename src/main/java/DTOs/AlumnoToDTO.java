@@ -7,7 +7,7 @@ import alumnos.material.dao.Alumnos;
 public class AlumnoToDTO {
 
 	public static AlumnosDTO alumnoToDto(Alumnos al) {
-		AlumnosDTO alumDto = new AlumnosDTO(al.getNumeroAlumno(), al.getNombreAlumno(), al.getTelefonoAlumno());
+		AlumnosDTO alumDto = new AlumnosDTO(al.getNumeroAlumno(), al.getNombreAlumno(), al.getTelefonoAlumno(),al.getPc());
 		return alumDto;
 	}
 

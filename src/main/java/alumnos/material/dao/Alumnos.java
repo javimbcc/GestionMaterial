@@ -78,7 +78,7 @@ public class Alumnos {
 	@Override
 	public String toString() {
 		return "Alumnos [numeroAlumno=" + numeroAlumno + ", nombreAlumno=" + nombreAlumno + ", telefonoAlumno="
-				+ telefonoAlumno + ", pc=" + pc + "]";
+				+ telefonoAlumno + ", pc=" + pc.getIdentificador() + "]";
 	}
 
 }
