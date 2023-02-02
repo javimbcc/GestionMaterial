@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 
+import DTOs.ADaoImpl;
 import DTOs.AlumnoToDTO;
 import DTOs.AlumnosDTO;
 import DTOs.OrdenadorDTO;
@@ -25,8 +26,10 @@ public class App {
 		// Creamos una instancia de ConsultasPostgre para poder ejecutar las consultas
 		ConsultasPostgre pg = (ConsultasPostgre) context.getBean(ConsultasPostgre.class);
 		// Declaramos una instancia para hacer una prueba
-		Ordenador pcEjemplo = new Ordenador(2, "HP Pavilion", "b332321");
-		Alumnos al = new Alumnos(2, "Javier Mena-Bernal Carranza", "601496752", pcEjemplo);
+		Ordenador pcEjemplo = new Ordenador(2, "Lenovo", "b332321");
+		Alumnos al = new Alumnos(2, "Jesus", "601496752", pcEjemplo);
+		//Creamos una instancia de nuestra clase para pasar a DAO
+		ADaoImpl aDao = new ADaoImpl();
 		// Declaramos el escaner para leer valores por consola
 		Scanner escaner = new Scanner(System.in);
 		// Declaramos las variables que usaremos para dar valores en el menu
@@ -47,8 +50,10 @@ public class App {
 		switch (opcion1) {
 		case 1:
 			System.out.println("Dando de alta a alumno");
+			//Convertimos a dto la consulta y luego a dao
+			Alumnos alInsertar = aDao.alumnoDToToDAo(AlumnoToDTO.alumnoToDto(al));
 			// DAR DE ALTA A ALUMNOS
-			pg.insertarMatriculaAlumno(al);
+			pg.insertarMatriculaAlumno(alInsertar);
 			break;
 		case 2:
 			System.out.println("Dando de baja a alumno seleccionado");
@@ -57,8 +62,10 @@ public class App {
 			break;
 		case 3:
 			System.out.println("Dando de alta portatil");
+			//Convertirmos a DTO y posteriormente a DAO
+			Ordenador pcAInsertar = aDao.ordenadorDToToDAo(OrdenadorToDTO.ordenadorToDto(pcEjemplo));
 			// AÑADIR ORDENADORES
-			pg.insertarAltaOrdenador(pcEjemplo);
+			pg.insertarAltaOrdenador(pcAInsertar);
 			break;
 		case 4:
 			System.out.println("Consultando el portatil con el id del alumno");
